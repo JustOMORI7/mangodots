@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrainsMono Nerd Font', 'CaskaydiaMono Nerd Font', 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', monospace;
+            background: #0a0a0c;
+            color: #e8e8ec;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: #121216;
+            border: 1px solid #1e1e24;
+            border-radius: 24px;
+            padding: 50px 60px;
+            display: flex;
+            align-items: stretch;
+            gap: 50px;
+            max-width: 780px;
+            width: 100%;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.03);
+        }
+
+        .divider {
+            width: 1px;
+            background: #25252c;
+            flex-shrink: 0;
+        }
+
+        .left, .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left {
+            gap: 32px;
+        }
+
+        .clock {
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: -1px;
+            line-height: 1;
+            color: #fff;
+        }
+
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #8a8a95;
+        }
+
+        .weather-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .search {
+            position: relative;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid #25252c;
+            background: #18181c;
+            color: #e8e8ec;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .search input:focus {
+            border-color: #3a3a45;
+        }
+
+        .search input::placeholder {
+            color: #55555f;
+        }
+
+        .right {
+            gap: 6px;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #b0b0b8;
+            font-size: 0.9rem;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .link:hover {
+            background: rgba(124, 58, 237, 0.05);
+            color: #fff;
+        }
+
+        .link-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #3a3a45;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .link:hover .link-dot {
+            background: #a78bfa;
+        }
+
+        @media (max-width: 640px) {
+            .card {
+                flex-direction: column;
+                padding: 35px 30px;
+                gap: 30px;
+            }
+            .divider {
+                width: 100%;
+                height: 1px;
+            }
+            .clock {
+                font-size: 2.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="left">
+            <div class="clock" id="clock">00:00</div>
+            <div class="weather" id="weather">
+                <span class="weather-icon">◌</span>
+                <span>Loading weather...</span>
+            </div>
+            <div class="search">
+                <input 
+                    type="text" 
+                    placeholder="Search with DuckDuckGo..." 
+                    id="search"
+                    autofocus
+                    onkeydown="if(event.key==='Enter') search()"
+                >
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="right" id="links"></div>
+    </div>
+
+    <script>
+        // ---- Links go here, add or remove as you like ----
+        const links = [
+            { name: 'YouTube', url: 'https://youtube.com' },
+            { name: 'NixOS Packages', url: 'https://search.nixos.org/packages?channel=unstable' },
+            { name: 'GitHub', url: 'https://github.com/JustOMORI7' },
+            { name: 'Photopea', url: 'https://www.photopea.com/' },
+            { name: 'regex101', url: 'https://regex101.com' },
+            { name: 'zsweep', url: 'https://zsweep.com' },
+        ];
+
+        // ---- Clock ----
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ---- Search ----
+        function search() {
+            const q = document.getElementById('search').value.trim();
+            if (q) {
+                window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(q)}`;
+            }
+        }
+
+        // ---- Render links ----
+        const linksContainer = document.getElementById('links');
+        links.forEach(l => {
+            const a = document.createElement('a');
+            a.className = 'link';
+            a.href = l.url;
+            a.innerHTML = `<span class="link-dot"></span><span>${l.name}</span>`;
+            linksContainer.appendChild(a);
+        });
+
+        // ---- Weather (wttr.in, free, no API key) ----
+        const wttrEmoji = {
+            'Clear': '☀️', 'Sunny': '☀️', 'Partly cloudy': '⛅',
+            'Cloudy': '☁️', 'Overcast': '☁️', 'Mist': '🌫️',
+            'Fog': '🌫️', 'Light rain': '🌧️', 'Patchy rain possible': '🌧️',
+            'Rain': '🌧️', 'Heavy rain': '🌧️', 'Light snow': '🌨️',
+            'Snow': '🌨️', 'Heavy snow': '🌨️', 'Thunderstorm': '⛈️',
+            'Clear night': '🌙',
+        };
+
+        async function getWeather() {
+            try {
+                const res = await fetch('https://wttr.in/Sivas?format=j1');
+                const data = await res.json();
+                const current = data.current_condition[0];
+                const temp = current.temp_C;
+                const desc = current.weatherDesc[0].value.trim();
+                const emoji = wttrEmoji[desc] || '◌';
+                document.getElementById('weather').innerHTML =
+                    `<span class="weather-icon">${emoji}</span>` +
+                    `<span>Sivas · ${temp}° · ${desc}</span>`;
+            } catch {
+                document.getElementById('weather').innerHTML =
+                    `<span class="weather-icon">◌</span><span>Weather unavailable</span>`;
+            }
+        }
+        getWeather();
+    </script>
+</body>
+</html>

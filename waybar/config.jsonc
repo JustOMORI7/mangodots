@@ -1,0 +1,68 @@
+{
+    "layer": "overlay",
+    "position": "right",
+    "width": 50,
+    "margin-top": 160,
+    "margin-bottom": 160,
+    "margin-right": 0,
+    "spacing": 0,
+
+    "modules-left": [
+        "ext/workspaces"
+    ],
+    "modules-center": [
+        "custom/music"
+    ],
+    "modules-right": [
+        "custom/power",
+        "pulseaudio",
+        "backlight",
+        "clock"
+    ],
+
+    "ext/workspaces": {
+        "format": "{icon}",
+        "ignore-hidden": true,
+        "on-click": "activate",
+        "sort-by-id": true
+    },
+
+    "pulseaudio": {
+        "format": "{volume}",
+        "format-muted": "󰝟",
+        "tooltip-format": "Volume: {volume}%",
+        "on-click": "pavucontrol"
+    },
+
+    "backlight": {
+        "format": "{percent}",
+        "tooltip-format": "Brightness: {percent}%"
+    },
+
+    "custom/power": {
+        "format": " ",
+        "tooltip-format": "Double-click: Power Off\nRight-click: Reboot",
+        "on-double-click": "systemctl poweroff",
+        "on-click-right": "reboot"
+    },
+
+    "custom/music": {
+        "format": "  {}",
+        "exec": "playerctl -p strawberry metadata -f '{{ artist }} - {{ title }}'",
+        "interval": 1,
+        "rotate": 270,
+        //"tooltip-format": "{}",
+        "tooltip": false,
+        "on-click": "playerctl -p strawberry play-pause",
+        "on-click-right": "strawberry",
+        "on-scroll-down": "playerctl -p strawberry next",
+        "on-scroll-up": "playerctl -p strawberry previous",
+        "max-length": 38,
+        "ellipsis": "..."
+    },
+
+    "clock": {
+        "format": "{:%H\n%M}",
+        "tooltip-format": "<big>{:%d %B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    }
+}

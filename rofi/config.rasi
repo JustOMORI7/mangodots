@@ -1,0 +1,98 @@
+configuration {
+    modi:                       "drun,run,window";
+    show-icons:                 true;
+    font:                       "JetBrainsMono Nerd Font Bold 10";
+}
+
+* {
+    /* color definitions */
+    bg-dim:                     #121212ca;
+    bg-hover:                   #222222;
+    text-main:                  #e0e0e0;
+    accent-color:               #c06a86;
+    scroll-bar:                 #333333;
+    
+    background-color:           transparent;
+    text-color:                 @text-main;
+    margin:                     0;
+    padding:                    0;
+}
+
+window {
+    background-color:           @bg-dim;
+    border:                     2px;
+    border-color:               @accent-color;
+    border-radius:              7px;
+    width:                      450px;
+    padding:                    15px;
+}
+
+mainbox {
+    children:                   [ inputbar, listview ];
+    spacing:                    10px;
+}
+
+inputbar {
+    children:                   [ entry ];
+    background-color:           #1e1e1e;
+    border-radius:              7px;
+    padding:                    8px 12px;
+}
+
+entry {
+    placeholder:                "Type to search...";
+    placeholder-color:          #666666;
+    text-color:                 @text-main;
+}
+
+listview {
+    lines:                      8;
+    columns:                    1;
+    fixed-height:               false;
+    spacing:                    4px;
+    scrollbar:                  true;
+    border:                     1px 0px 0px 0px;
+    border-color:               @accent-color;
+    padding:                    8px 0px 0px 0px;
+}
+
+scrollbar {
+    width:                      4px;
+    border:                     0;
+    handle-width:               8px;
+    handle-color:               @scroll-bar;
+    border-radius:              2px;
+    margin:                     0 0 0 5px;
+}
+
+element {
+    padding:                    8px 12px;
+    background-color:           transparent;
+    text-color:                 @text-main;
+}
+
+element normal.normal,
+element normal.active,
+element alternate.normal,
+element alternate.active {
+    background-color:           transparent;
+    text-color:                 @text-main;
+}
+
+element selected.normal,
+element selected.active {
+    background-color:           @bg-hover;
+    text-color:                 @text-main;
+    border:                     0px 0px 0px 3px;
+    border-color:               @accent-color;
+}
+
+element-text {
+    vertical-align:             0.5;
+    text-color:                 inherit;
+}
+
+element-icon {
+    size:                       20px;
+    margin:                     0 10px 0 0;
+}

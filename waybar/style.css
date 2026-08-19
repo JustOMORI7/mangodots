@@ -1,0 +1,74 @@
+* {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+window#waybar > box {
+    background-color: rgba(27, 27, 27, 0.60);
+    min-width: 50px;
+    border-radius: 7px 0 0 7px;
+    border: 2px solid #c06a86;
+    border-right: none;
+}
+
+#workspaces {
+    background-color: transparent;
+}
+
+#workspaces button {
+    padding: 4px 0;
+    color: #ffffff;
+    background: transparent;
+}
+
+#workspaces button.active {
+    background-color: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+    border-radius: 0px;
+    margin: 2px 0;
+    border-right: 3px solid #dddddd;
+}
+
+#workspaces button.urgent {
+    background-color: #eb6f92;
+    color: #ffffff;
+}
+
+#pulseaudio, #backlight, #clock, #custom-power {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 8px 0px;
+}
+
+#custom-music {
+    color: #ffffff;
+}
+
+#clock {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.modules-right {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 8px 0px;
+    border-radius: 0 0 0 7px;
+    margin: 0;
+}
+
+.modules-left {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 8px 0px;
+    border-radius: 7px 0 0 0;
+    margin: 0;
+}

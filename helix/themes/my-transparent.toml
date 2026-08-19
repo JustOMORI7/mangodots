@@ -1,0 +1,14 @@
+inherits = "monokai_pro_spectrum"
+
+"ui.background" = {}
+"ui.statusline" = { fg = "subtext0", bg = "none" }
+"ui.statusline.inactive" = { fg = "overlay0", bg = "none" }
+"ui.popup" = { bg = "none" }
+"ui.help" = { bg = "none" }
+"ui.menu" = { bg = "none" }
+
+"ui.gutter" = { bg = "none" }
+"ui.gutter.selected" = { bg = "none" }
+
+"ui.linenr" = { fg = "#5e5e5e" }
+"ui.linenr.selected" = { fg = "#ffffff", modifiers = ["bold"] }

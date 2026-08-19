@@ -1,0 +1,35 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 16px;
+    
+}
+
+.notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.notification {
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+  background: #101010ee;
+  color: #ffffff;
+  border: 1px solid #333333;
+}
+
+.notification-content {
+  padding: 10px;
+}
+
+.control-center {
+    border-radius: 0;
+    background: #101010ee;
+}
+
+.notification-content .image {
+    border-radius: 12px;
+    margin-right: 12px;
+}

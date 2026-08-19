@@ -1,0 +1,20 @@
+theme = "my-transparent"
+
+[editor]
+line-number = "relative"
+cursorline = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding", "file-type"]
+
+[editor.statusline.mode]
+normal = ""
+insert = "=^_^="
+select = "= SEL ="
+
+[editor.cursor-shape]
+normal = "underline"
+insert = "bar"
+select = "underline"
