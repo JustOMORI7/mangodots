@@ -12,12 +12,13 @@
 }
 
 .notification {
-  border-radius: 0;
+  border-radius: 7px;
   margin: 0;
   box-shadow: none;
   background: #101010ee;
   color: #ffffff;
-  border: 1px solid #333333;
+  border: 2px solid #c06a86;
+  /* border: 1px solid #333333; */
 }
 
 .notification-content {
